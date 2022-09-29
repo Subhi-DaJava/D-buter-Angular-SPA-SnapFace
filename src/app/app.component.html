@@ -2,5 +2,7 @@
      c'est donc dans  app.component.html qu'on va venir ajouter le sélecteur de notre nouveau component comme balise HTML <app-face-snap></app-face-snap> -->
      <!-- On voit donc que le sélecteur d'un component crée une balise HTML personnalisée pour l'insertion du component dans l'application. -->
 
-<app-face-snap></app-face-snap>
-<app-face-snap></app-face-snap>
+<app-face-snap [faceSnap]="mySnap"></app-face-snap>
+<app-face-snap [faceSnap]="otherSnap"></app-face-snap>
+<app-face-snap [faceSnap]="lastSnap"></app-face-snap>
+<app-my-fb [myFB]="myFirstFB"></app-my-fb>
