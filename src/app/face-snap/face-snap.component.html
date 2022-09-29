@@ -8,12 +8,19 @@
     <p>Là, Angular associe les valeurs des propriétés TypeScript aux attributs de l'élément HTML</p>
     <img [src]="imageUrl" [alt]="title"> 
     <p>Mis en ligne: {{ createDate }}</p>
-    <p>Emoji : {{ snaps }}</p>
+    <p>Si l'utilisateur a déjà "snapped" une image, le texte du bouton doit être "Oops, un Snap!", et cliquer dessus doit "retirer" le snap (réduire les snaps de 1), auquel moment le bouton réaffiche "Oh Snap!", et retrouve son comportement d'origine.</p>
+    <p><button (click)="onSnap()"> {{ buttonText }}</button> <!--On utilise bien  (click)  et non  (onclick)  car on veut réagir à l'événement qui s'appelle "click" !-->
+        Emoji : {{ snaps }}</p>
 </div>
+<p>Ça y est ! La fonctionnalité est terminée : vous avez réussi à réagir à un événement venant du template, et à exécuter un comportement conditionnel, tout en vous servant de la string interpolation pour afficher le résultat et pour rendre dynamique le texte du bouton !</p>
 <div class="resume-card">
     On déclare les propriétés d'un component en haut de sa classe, et on les initialise dans la méthode  ngOnInit()
     La méthode  ngOnInit()  est appelée une fois par instance de component au moment de la création de cette instance.
     La string interpolation avec les doubles accolades permet d'insérer la valeur d'une propriété TypeScript dans le template.
     L'attribute binding permet de lier la valeur d'une propriété TypeScript à un attribut HTML, en mettant l'attribut entre crochets  []  et en passant le nom de la propriété.
+</div>
+<div class="resume-card">
+    Prenons quelques instants pour noter que chaque instance d'un component est totalement indépendante. Pour le vérifier, ajoutez quelques instances supplémentaires de FaceSnapComponent, et cliquez sur leurs boutons "Oh Snap!". Vous verrez que seul le nombre de snaps pour le component où vous cliquez augmente.
+    Pour lier une méthode à un événement d'un élément du template, mettez l'événement entre parenthèses  ()  et passez la méthode en argument ; ex. : (click)="onClickButton()"
 </div>
 

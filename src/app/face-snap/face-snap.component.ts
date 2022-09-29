@@ -16,6 +16,9 @@ export class FaceSnapComponent implements OnInit{
   createDate!: Date;
   snaps!: number;
   imageUrl!: string;
+  snapped!: true;
+  buttonText!: string; 
+
   ngOnInit() { // Au moment d'initialisation du component, on initialiser les propriétées
     this.title = 'Adbuweli';
     this.description = 'Mon meilleur ami dupuis de l\'université !';
@@ -23,5 +26,18 @@ export class FaceSnapComponent implements OnInit{
     this.snaps = 10;
     this.imageUrl = 'https://cdn.pixabay.com/photo/2022/07/30/04/46/sunrise-7353034_960_720.jpg';
     //this.imageUrl = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg';
+    this.buttonText = 'On Sanp!'
+  }
+
+  // Ajoutez un bouton avec le texte "Oh Snap!" à côté du nombre de snaps dans votre component :
+  onSnap() { //Le nom de méthode qui commence par on signale que cette méthode répond à un événement.
+    if(this.buttonText === 'Oh Snap!') {
+      this.snaps++;
+      this.buttonText = 'Opps, unSnap!';
+    }
+    else {
+      this.snaps--;
+      this.buttonText = 'Oh Snap!';
+    }
   }
 }
