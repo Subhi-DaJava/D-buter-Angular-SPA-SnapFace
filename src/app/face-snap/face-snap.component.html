@@ -1,1 +1,19 @@
-<p>face-snap works!</p>
+<h1>Afficher les données venant du typeSricpt dans le template, double accolades le nom de la varibale/propriété remplacé par sa valeur ou contenu de la propriété.</h1>
+<p>La string interpolation est la méthode la plus simple pour afficher le contenu d'une variable dans le template. Il suffit de mettre le nom de la variable à afficher entre doubles accolades dans le HTML. Angular remplace la variable entre doubles accolades par sa valeur </p>
+<p>L'objectif de l'application Snapface est de partager des images. Il nous faut donc un moyen d'afficher dynamiquement des images ! L'approche dans ce genre de cas sera souvent que le serveur renvoie l'URL de l'image à afficher. Il nous faut donc un moyen de lier cette URL dynamique à l'attribut  src  d'une balise <img> : attribute binding !</p>
+
+<div class="face-snap-card">
+    <h2>{{ title }}</h2>
+    <h2>{{ description }}</h2>
+    <p>Là, Angular associe les valeurs des propriétés TypeScript aux attributs de l'élément HTML</p>
+    <img [src]="imageUrl" [alt]="title"> 
+    <p>Mis en ligne: {{ createDate }}</p>
+    <p>Emoji : {{ snaps }}</p>
+</div>
+<div class="resume-card">
+    On déclare les propriétés d'un component en haut de sa classe, et on les initialise dans la méthode  ngOnInit()
+    La méthode  ngOnInit()  est appelée une fois par instance de component au moment de la création de cette instance.
+    La string interpolation avec les doubles accolades permet d'insérer la valeur d'une propriété TypeScript dans le template.
+    L'attribute binding permet de lier la valeur d'une propriété TypeScript à un attribut HTML, en mettant l'attribut entre crochets  []  et en passant le nom de la propriété.
+</div>
+
