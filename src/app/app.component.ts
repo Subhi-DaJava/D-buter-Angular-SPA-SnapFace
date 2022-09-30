@@ -14,27 +14,32 @@ export class AppComponent implements OnInit{
   myFirstFB! : MyFB;
 
   ngOnInit() {
-      this.mySnap = new FaceSnap(
-        'Adbuweli',
-        'Mon meilleur ami dupuis de l\'université !',
-        'https://cdn.pixabay.com/photo/2022/07/30/04/46/sunrise-7353034_960_720.jpg',
-        new Date(),
-        1
-      );
-      this.otherSnap = new FaceSnap(
-        'Matin',
-        'Belle Avanture!',
-        'https://cdn.pixabay.com/photo/2015/01/07/15/51/woman-591576_960_720.jpg',
-        new Date(),
-        1
-      );
-      this.lastSnap = new FaceSnap(
-        'Family trip',
-        'On a fait des vacanses inoubliables !',
-        'https://cdn.pixabay.com/photo/2022/08/19/10/35/scooter-7396608_960_720.jpg',
-        new Date(),
-        1
-      );
+      this.mySnap = {
+        title: 'Adbuweli',
+        description: 'Mon meilleur ami dupuis de l\'université !',
+        imageUrl: 'https://cdn.pixabay.com/photo/2022/07/30/04/46/sunrise-7353034_960_720.jpg',
+        createDate: new Date(),
+        snaps: 1,
+      };
+    
+      this.otherSnap = {
+        title: 'Matin',
+        description: 'Belle Avanture!',
+        imageUrl: 'https://cdn.pixabay.com/photo/2015/01/07/15/51/woman-591576_960_720.jpg',
+        createDate: new Date(),
+        snaps: 6,
+        location: 'Paris'
+      };
+     
+  
+      this.lastSnap = {
+        title: 'Family trip',
+        description: 'On a fait des vacanses inoubliables !',
+        imageUrl: 'https://cdn.pixabay.com/photo/2022/08/19/10/35/scooter-7396608_960_720.jpg',
+        createDate: new Date(),
+        snaps: 1,
+        location: 'Lyon'
+  }
 
       this.myFirstFB = new MyFB(
         'Subhi',
@@ -42,7 +47,7 @@ export class AppComponent implements OnInit{
         'Dev Java',
         'https://cdn.pixabay.com/photo/2016/11/19/14/16/man-1839500_960_720.jpg',
         'men',
-        0
+        1
       );
 
   }

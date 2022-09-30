@@ -3,6 +3,6 @@
      <!-- On voit donc que le sélecteur d'un component crée une balise HTML personnalisée pour l'insertion du component dans l'application. -->
 
 <app-face-snap [faceSnap]="mySnap"></app-face-snap>
-<app-face-snap [faceSnap]="otherSnap"></app-face-snap>
+<app-face-snap [faceSnap]="otherSnap" *ngIf="otherSnap.snaps > 5"></app-face-snap>
 <app-face-snap [faceSnap]="lastSnap"></app-face-snap>
 <app-my-fb [myFB]="myFirstFB"></app-my-fb>

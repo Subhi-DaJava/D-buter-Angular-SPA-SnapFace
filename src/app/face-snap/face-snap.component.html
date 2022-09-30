@@ -1,40 +1,73 @@
 <h1>Afficher les données venant du typeSricpt dans le template, double accolades le nom de la varibale/propriété remplacé par sa valeur ou contenu de la propriété.</h1>
+<h4>Interpolation</h4>
 <p>La string interpolation est la méthode la plus simple pour afficher le contenu d'une variable dans le template. Il suffit de mettre le nom de la variable à afficher entre doubles accolades dans le HTML. Angular remplace la variable entre doubles accolades par sa valeur </p>
+<h4>Objectif de l'app</h4>
 <p>L'objectif de l'application Snapface est de partager des images. Il nous faut donc un moyen d'afficher dynamiquement des images ! L'approche dans ce genre de cas sera souvent que le serveur renvoie l'URL de l'image à afficher. Il nous faut donc un moyen de lier cette URL dynamique à l'attribut  src  d'une balise <img> : attribute binding !</p>
-
+<h4>Afficher face Snap</h4>
 <div class="face-snap-card">
     <h2>{{ faceSnap.title }}</h2>
     <h2>{{ faceSnap.description }}</h2>
     <p>Là, Angular associe les valeurs des propriétés TypeScript aux attributs de l'élément HTML</p>
+    <br>
+    <p *ngIf="faceSnap.location === 'Paris'" style="color: red;">Photo prise à {{ faceSnap.location }}</p>
     <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"> 
     <p>Mis en ligne: {{ faceSnap.createDate }}</p>
+    
+    <h4>Snap ou non Snap!</h4>
     <p>Si l'utilisateur a déjà "snapped" une image, le texte du bouton doit être "Oops, un Snap!", et cliquer dessus doit "retirer" le snap (réduire les snaps de 1), auquel moment le bouton réaffiche "Oh Snap!", et retrouve son comportement d'origine.</p>
+    
     <p><button (click)="onSnap()"> {{ buttonText }}</button> <!--On utilise bien  (click)  et non  (onclick)  car on veut réagir à l'événement qui s'appelle "click" !-->
         Emoji : {{ faceSnap.snaps }}</p>
 </div>
 <p>Ça y est ! La fonctionnalité est terminée : vous avez réussi à réagir à un événement venant du template, et à exécuter un comportement conditionnel, tout en vous servant de la string interpolation pour afficher le résultat et pour rendre dynamique le texte du bouton !</p>
-<br>
+<h4>Déclaration des propriétés</h4>
 <div class="resume-card">
     On déclare les propriétés d'un component en haut de sa classe, et on les initialise dans la méthode  ngOnInit()
     La méthode  ngOnInit()  est appelée une fois par instance de component au moment de la création de cette instance.
     La string interpolation avec les doubles accolades permet d'insérer la valeur d'une propriété TypeScript dans le template.
     L'attribute binding permet de lier la valeur d'une propriété TypeScript à un attribut HTML, en mettant l'attribut entre crochets  []  et en passant le nom de la propriété.
 </div>
-<br>
+<h4>instance e component</h4>
 <div class="resume-card">
     Prenons quelques instants pour noter que chaque instance d'un component est totalement indépendante. Pour le vérifier, ajoutez quelques instances supplémentaires de FaceSnapComponent, et cliquez sur leurs boutons "Oh Snap!". Vous verrez que seul le nombre de snaps pour le component où vous cliquez augmente.
     Pour lier une méthode à un événement d'un élément du template, mettez l'événement entre parenthèses  ()  et passez la méthode en argument ; ex. : (click)="onClickButton()"
 </div>
-<br>
+<h4>Importer avec @Input</h4>
 <div class="resume-card">
-    Pour qu'une propriété puisse être injectée depuis l'extérieur d'un component, il faut lui ajouter le décorateur  @Input().
-    Dans app.component.ts  – le parent de FaceSnapComponent – créez une propriété de type  FaceSnap  et initialisez-la dans  ngOnInit().
-    N'oubliez pas d'implémenter  OnInit  pour pouvoir utiliser  ngOnInit()  dans AppComponent !
-    Utiliser l'attribute binding pour lier cet objet à la propriété personnalisée  faceSnap  de FaceSnapComponent dans  app.component.html.
-    @Input() crée comme un attribut HTML auquel on peut lier une valeur, tout comme vous l'avez fait avec l'attribut  src  de l'élément image. !
-    N'hésitez pas à créer vos propres types, sous forme de classe par exemple, pour faciliter la manipulation de données dans votre application.
+    <h4>Injection de propriété</h4>
+    <div>
+        Pour qu'une propriété puisse être injectée depuis l'extérieur d'un component, il faut lui ajouter le décorateur  @Input().
+        Dans app.component.ts  – le parent de FaceSnapComponent – créez une propriété de type  FaceSnap  et initialisez-la dans  ngOnInit().
+        N'oubliez pas d'implémenter  OnInit  pour pouvoir utiliser  ngOnInit()  dans AppComponent !
+    </div>
+    <h4>attribut binding</h4>
+    <div>
+        Utiliser l'attribute binding pour lier cet objet à la propriété personnalisée  faceSnap  de FaceSnapComponent dans  app.component.html.
+        @Input() crée comme un attribut HTML auquel on peut lier une valeur, tout comme vous l'avez fait avec l'attribut  src  de l'élément image. !
+        N'hésitez pas à créer vos propres types, sous forme de classe par exemple, pour faciliter la manipulation de données dans votre application.
+    </div>
+  
+    <h4>Propriété personnalisée</h4>
+   <div>
     Une propriété personnalisée est rendue injectable depuis l'extérieur grâce au décorateur  @Input()
     Une propriété en  @Input()  est utilisable comme n'importe quelle autre propriété : on peut en afficher les éléments, les modifier… 
     On lie ensuite une valeur à cette propriété depuis le component parent avec l'attribute binding, c'est-à-dire le nom de la propriété entre crochets  []  en passant la valeur entre les guillemets ; ex. : faceSnap="mySnap"
+   </div>
+  
+</div>
+<br><br>
+<h2>Directive</h2>
+<div class="directiv-card">
+    <h4>NgIf</h4>
+    <div class="ngif">
+        Une directive est une classe qui vient ajouter du comportement à l'élément sur lequel elle est posée. L'astérisque au début du nom  *ngIf nous montre qu'il s'agit d'une directive structurelle, qui viendra donc toucher à la structure du document.
+        *ngIf  permet donc de structurer vos components selon les conditions que vous choisissez. 
+    </div>
+    <br>
+    <h4>propriété optionnelle</h4>
+    <div class="attribut-optionel">
+        Le TypeScript nous permet d'ajouter des propriétés optionnelles aux classes, aux objets, et même des arguments optionnels aux méthodes. Je vous propose d'ajouter dès maintenant une propriété optionnelle à la classe FaceSnap, qui sera la localisation de l'image. On pourrait imaginer que les utilisateurs puissent choisir d'ajouter ou non cette localisation. Pour ajouter cette propriété optionnelle, il suffit d'utiliser un point d'interrogation.
+        Ajouter la directive  *ngIf  à un élément (qui peut aussi être un component) dit à Angular d'ajouter ou non cet élément au DOM selon la condition que vous lui passez.
+    </div>
 </div>
 
