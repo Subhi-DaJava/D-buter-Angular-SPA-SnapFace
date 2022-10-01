@@ -8,39 +8,38 @@ import { MyFB } from './models/my-fb.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  mySnap!: FaceSnap; // déclaration d'un attribut
-  otherSnap!: FaceSnap;
-  lastSnap!: FaceSnap;
+  faceSnaps!: FaceSnap[]; // déclaration d'un tableau
+  
   myFirstFB! : MyFB;
 
   ngOnInit() {
-      this.mySnap = {
+    this.faceSnaps = [
+      {
         title: 'Adbuweli',
         description: 'Mon meilleur ami dupuis de l\'université !',
         imageUrl: 'https://cdn.pixabay.com/photo/2022/07/30/04/46/sunrise-7353034_960_720.jpg',
         createDate: new Date(),
         snaps: 1,
-      };
-    
-      this.otherSnap = {
+      },
+      {
         title: 'Matin',
         description: 'Belle Avanture!',
         imageUrl: 'https://cdn.pixabay.com/photo/2015/01/07/15/51/woman-591576_960_720.jpg',
         createDate: new Date(),
         snaps: 6,
         location: 'Paris'
-      };
-     
-  
-      this.lastSnap = {
+      },
+
+      {
         title: 'Family trip',
         description: 'On a fait des vacanses inoubliables !',
         imageUrl: 'https://cdn.pixabay.com/photo/2022/08/19/10/35/scooter-7396608_960_720.jpg',
         createDate: new Date(),
         snaps: 1,
         location: 'Lyon'
-  }
-
+      }
+    ],
+     
       this.myFirstFB = new MyFB(
         'Subhi',
         40,

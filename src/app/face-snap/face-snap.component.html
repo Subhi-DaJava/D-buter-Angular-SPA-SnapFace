@@ -9,7 +9,8 @@
     <h2>{{ faceSnap.description }}</h2>
     <p>Là, Angular associe les valeurs des propriétés TypeScript aux attributs de l'élément HTML</p>
     <br>
-    <p *ngIf="faceSnap.location === 'Paris'" style="color: red;">Photo prise à {{ faceSnap.location }}</p>
+    <p *ngIf="faceSnap.location" style="color: red;">Photo prise à {{ faceSnap.location }}</p>
+    <!-- <p *ngIf="faceSnap.location === 'Paris'" style="color: red;">Photo prise à {{ faceSnap.location }}</p> -->
     <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"> 
     <p>Mis en ligne: {{ faceSnap.createDate }}</p>
     
@@ -69,5 +70,16 @@
         Le TypeScript nous permet d'ajouter des propriétés optionnelles aux classes, aux objets, et même des arguments optionnels aux méthodes. Je vous propose d'ajouter dès maintenant une propriété optionnelle à la classe FaceSnap, qui sera la localisation de l'image. On pourrait imaginer que les utilisateurs puissent choisir d'ajouter ou non cette localisation. Pour ajouter cette propriété optionnelle, il suffit d'utiliser un point d'interrogation.
         Ajouter la directive  *ngIf  à un élément (qui peut aussi être un component) dit à Angular d'ajouter ou non cet élément au DOM selon la condition que vous lui passez.
     </div>
+    <h4>NgFor-01102022</h4>
+    <div>
+        Au lieu d'avoir trois variables de type FaceSnap  dans votre AppComponent, vous allez créer une seule variable qui contiendra un tableau de type FaceSnap[] et modifier votre ngOnInit() pour le remplir.
+        <br>
+        la directive  *ngFor  fonctionne un peu comme une boucle  for...of  , c'est-à-dire que, dans ce cas de figure, elle va itérer sur le tableau  faceSnaps  et vous exposer l'élément correspondant à chaque itération sous l'alias  faceSnap
+        vous associez ensuite l'élément du tableau à la propriété  faceSnap  du component.
+        <h4>En Résumé</h4>
+        La directive  *ngFor  vous permet d'insérer un élément dans le DOM pour chaque élément dans un tableau.
+        La syntaxe  let element of array  vous donne accès à l'élément de chaque itération, vous permettant de l'injecter dans un component, par exemple.
+    </div>
 </div>
+
 
