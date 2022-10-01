@@ -6,7 +6,8 @@
     <p>L'objectif de l'application Snapface est de partager des images. Il nous faut donc un moyen d'afficher dynamiquement des images ! L'approche dans ce genre de cas sera souvent que le serveur renvoie l'URL de l'image à afficher. Il nous faut donc un moyen de lier cette URL dynamique à l'attribut  src  d'une balise <img> : attribute binding !</p>
     <h4>Afficher face Snap</h4>
 
-    <div class="face-snap-card">
+    <div class="face-snap-card" [ngClass]="{ snapped: buttonText === 'Opps, unSnap!' }">
+        <!-- <div class="face-snap-card" [ngClass]="{ snapped: faceSnap.snaps > 400 }"> -->
         <h2>{{ faceSnap.title }}</h2>
         <h3>{{ faceSnap.description }}</h3>
         <p>Là, Angular associe les valeurs des propriétés TypeScript aux attributs de l'élément HTML</p>
@@ -15,7 +16,7 @@
         <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"> 
         <p>Mis en ligne: {{ faceSnap.createDate }}</p>
         <h4>Snap ou non Snap!</h4>
-        <p><button (click)="onSnap()" [ngStyle]="{color: 'rgb(0, 0, ' + faceSnap.snaps/3 + ')'}"> {{ buttonText }}</button> <!--On utilise bien  (click)  et non  (onclick)  car on veut réagir à l'événement qui s'appelle "click" !-->
+        <p><button (click)="onSnap()"> {{ buttonText }}</button> <!--On utilise bien  (click)  et non  (onclick)  car on veut réagir à l'événement qui s'appelle "click" !-->
             <span [ngStyle]="{color: 'rgb(0, ' + faceSnap.snaps/2 + ', 0)'}">Emoji : {{ faceSnap.snaps }}</span> </p>
     </div>
     <p>Ça y est ! La fonctionnalité est terminée : vous avez réussi à réagir à un événement venant du template, et à exécuter un comportement conditionnel, tout en vous servant de la string interpolation pour afficher le résultat et pour rendre dynamique le texte du bouton !</p>
@@ -92,6 +93,27 @@
             La directive [ngStyle] permet d'appliquer des styles qui dépendent de valeurs dynamiques, comme un texte qui, plus il y a de snaps, devient de plus en plus vert.
             La directive [ngStyle] prend comme argument un objet où les clés correspondent aux styles CSS à modifier, et les valeurs aux valeurs que doivent prendre ces styles.
         </p>
+        <h4>NgClass-01102022</h4>
+        <p>La meilleure façon de modifier plusieurs styles en même temps est d'utiliser des classes CSS, surtout s'il s'agit d'un élément avec plusieurs enfants. Dans ce chapitre, vous allez modifier plusieurs styles des éléments de vos cards quand un utilisateur clique sur "Oh Snap!" avec la directive[ngClass].</p>
+        <h5>Objectif</h5>
+        <p>L'objectif de ce chapitre est de faire ressortir visuellement les FaceSnaps que l'utilisateur a "snapped". On pourra imaginer une classe snapped  qui viendra s'ajouter à la   div class="face-snap-card"  pour modifier quelques couleurs, par exemple. On ajoute cette classe dans  face-snap.component.scss.</p>
+        <h5>implémentation</h5>
+        <p>[ngClass] prend un objet en argument, comme  [ngStyle], mais dont le fonctionnement est différent :
+            les clés sont les noms de classe CSS à appliquer ;
+            les valeurs sont les conditions qui doivent être remplies pour que les classes correspondantes s'appliquent.</p>
+            <h4>Résumé</h4>
+            <p>La directive [ngClass] permet d'ajouter dynamiquement des classes à des éléments HTML.
+                [ngClass] prend un objet en argument où les clés sont des noms de classe CSS, et les valeurs sont les conditions selon lesquelles les classes doivent être appliquées.</p>
+            <h3>Résumé de la Parie 2</h3>
+            <p>
+                Vous avez découvert les directives : des classes qui permettent d'ajouter des comportements à des éléments HTML, ou même à des components.
+                Vous avez implémenté des directives structurelles pour modifier la structure du document :
+                1) *ngIf  pour ajouter un élément ou non au DOM selon une condition donnée ;
+                2) *ngFor  pour ajouter autant d'éléments au DOM qu'il y a d'éléments dans un tableau.
+                Vous avez utilisé des directives par attribut pour gérer dynamiquement les styles :
+                3) [ngStyle]  pour paramétrer des styles selon des valeurs venant du TypeScript ;
+                4) [ngClass]  pour ajouter et retirer des classes CSS selon une condition donnée. 
+            </p>
         </div>
 </div>
 </div>

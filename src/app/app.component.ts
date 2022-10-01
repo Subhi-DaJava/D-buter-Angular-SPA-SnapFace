@@ -35,7 +35,7 @@ export class AppComponent implements OnInit{
         description: 'On a fait des vacanses inoubliables !',
         imageUrl: 'https://cdn.pixabay.com/photo/2022/08/19/10/35/scooter-7396608_960_720.jpg',
         createDate: new Date(),
-        snaps: 1,
+        snaps: 0,
         location: 'Lyon'
       }
     ],

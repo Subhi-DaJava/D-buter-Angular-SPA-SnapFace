@@ -18,13 +18,13 @@ export class FaceSnapComponent implements OnInit{
 
   // Ajoutez un bouton avec le texte "Oh Snap!" à côté du nombre de snaps dans votre component :
   onSnap() { //Le nom de méthode qui commence par on signale que cette méthode répond à un événement.
-    if(this.buttonText === 'Oh Snap!') {
+    if(this.buttonText === 'On Sanp!') {
       this.faceSnap.snaps++;
       this.buttonText = 'Opps, unSnap!';
     }
     else {
       this.faceSnap.snaps--;
-      this.buttonText = 'Oh Snap!';
+      this.buttonText = 'On Sanp!';
     }
   }
 }
