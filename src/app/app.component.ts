@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
         description: 'Mon meilleur ami dupuis de l\'université !',
         imageUrl: 'https://cdn.pixabay.com/photo/2022/07/30/04/46/sunrise-7353034_960_720.jpg',
         createDate: new Date(),
-        snaps: 1,
+        snaps: 500,
       },
       {
         title: 'Matin',
