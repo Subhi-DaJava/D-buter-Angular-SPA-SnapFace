@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
       },
       {
         title: 'Matin',
-        description: 'Belle Avanture!',
+        description: 'Belle avanture !',
         imageUrl: 'https://cdn.pixabay.com/photo/2015/01/07/15/51/woman-591576_960_720.jpg',
         createDate: new Date(),
         snaps: 6,
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit{
       },
 
       {
-        title: 'Family trip',
+        title: 'family trip',
         description: 'On a fait des vacanses inoubliables !',
         imageUrl: 'https://cdn.pixabay.com/photo/2022/08/19/10/35/scooter-7396608_960_720.jpg',
         createDate: new Date(),

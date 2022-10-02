@@ -8,10 +8,10 @@
 
     <div class="face-snap-card" [ngClass]="{ snapped: buttonText === 'Opps, unSnap!' }">
         <!-- <div class="face-snap-card" [ngClass]="{ snapped: faceSnap.snaps > 400 }"> -->
-        <h2>{{ faceSnap.title }}</h2>
-        <h3>{{ faceSnap.description }}</h3>
+        <h2>{{ faceSnap.title | uppercase }}</h2>
+        <h3>{{ faceSnap.description | titlecase }}</h3>
         <p>Là, Angular associe les valeurs des propriétés TypeScript aux attributs de l'élément HTML</p>
-        <p *ngIf="faceSnap.location" style="color: red;">Photo prise à {{ faceSnap.location }}</p>
+        <p *ngIf="faceSnap.location" style="color: red;">Photo prise à {{ faceSnap.location | uppercase }}</p>
         <!-- <p *ngIf="faceSnap.location === 'Paris'" style="color: red;">Photo prise à {{ faceSnap.location }}</p> -->
         <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"> 
         <p>Mis en ligne: {{ faceSnap.createDate }}</p>
@@ -36,7 +36,7 @@
     <h4>Importer avec @Input</h4>
     <div class="resume-card">
         <h4>Injection de propriété</h4>
-        <div>
+        <div class="injection">
             Pour qu'une propriété puisse être injectée depuis l'extérieur d'un component, il faut lui ajouter le décorateur  @Input().
             Dans app.component.ts  – le parent de FaceSnapComponent – créez une propriété de type  FaceSnap  et initialisez-la dans  ngOnInit().
             N'oubliez pas d'implémenter  OnInit  pour pouvoir utiliser  ngOnInit()  dans AppComponent !
@@ -104,7 +104,7 @@
             <h4>Résumé</h4>
             <p>La directive [ngClass] permet d'ajouter dynamiquement des classes à des éléments HTML.
                 [ngClass] prend un objet en argument où les clés sont des noms de classe CSS, et les valeurs sont les conditions selon lesquelles les classes doivent être appliquées.</p>
-            <h3>Résumé de la Parie 2</h3>
+            <h3>Résumé de la Parie 3</h3>
             <p>
                 Vous avez découvert les directives : des classes qui permettent d'ajouter des comportements à des éléments HTML, ou même à des components.
                 Vous avez implémenté des directives structurelles pour modifier la structure du document :
@@ -115,7 +115,22 @@
                 4) [ngClass]  pour ajouter et retirer des classes CSS selon une condition donnée. 
             </p>
         </div>
-</div>
+    </div>
+    <div class="pipes">
+            <h4>Pipes 0210202022 4ème partie</h4>
+            <p>Un pipe est appliqué dans le HTML et va formater la valeur qu'on lui passe selon le pipe utilisé sans toucher à la donnée sous-jacente. </p>
+            <h3>Trois pipes pour modifier les class</h3>
+            <p>Il existe trois pipes fournis par Angular pour modifier la casse :
+                LowerCasePipe : on affiche le texte en minuscules
+                UpperCasePipe : on affiche le texte en majuscules
+                TitleCasePipe : on affiche le texte avec une majuscule au début de chaque mot, avec le reste du mot en minuscules</p>
+            <p>On applique un pipe à une chaîne de caractères affichée avec la string interpolation. On rajoute le caractère pipe | puis le nom du pipe.</p>
+            <h4>Note</h4>
+            <p>Je tiens à répéter que les pipes ne changent rien à la valeur des variables sous-jacentes. Les pipes existent uniquement pour modifier le formatage affiché d'une donnée : on ne peut pas les utiliser ailleurs que dans le template, et il est fortement déconseillé de les utiliser ailleurs que dans une string interpolation.</p>
+            <h4>Resumé Pipes 1</h4>
+            <p>Un pipe permet de formater l'affichage d'une donnée sans modifier la donnée sous-jacente.
+                Angular fournit trois pipes pour modifier la casse affichée d'une chaîne de caractères : UpperCasePipe, LowerCasePipe, et TitleCasePipe pour les majuscules, les minuscules et le mélange type "titre".</p>
+    </div>
 </div>
 
 

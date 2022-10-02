@@ -13,7 +13,7 @@
       width: 100%;
     }
 
-    h2, h3 {
+    h2, h3,h4 {
       margin-bottom: 0;
       margin-left: 10px;
     }
@@ -49,5 +49,10 @@
         box-shadow: lightgreen 0 0 5px;
       }
     }
+  }
+
+  .pipes, .directiv-card, h2, p, h1, h2, h4, div {
+    margin-bottom: 0;
+    margin-left: 10px;
   }
   
