@@ -14,7 +14,7 @@
         <p *ngIf="faceSnap.location" style="color: red;">Photo prise à {{ faceSnap.location | uppercase }}</p>
         <!-- <p *ngIf="faceSnap.location === 'Paris'" style="color: red;">Photo prise à {{ faceSnap.location }}</p> -->
         <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"> 
-        <p>Mis en ligne: {{ faceSnap.createDate }}</p>
+        <p>Mis en ligne: {{ faceSnap.createDate | date: 'à HH:mm:ss, le d/MMMM/yyyy' }}</p>
         <h4>Snap ou non Snap!</h4>
         <p><button (click)="onSnap()"> {{ buttonText }}</button> <!--On utilise bien  (click)  et non  (onclick)  car on veut réagir à l'événement qui s'appelle "click" !-->
             <span [ngStyle]="{color: 'rgb(0, ' + faceSnap.snaps/2 + ', 0)'}">Emoji : {{ faceSnap.snaps }}</span> </p>
@@ -129,7 +129,16 @@
             <p>Je tiens à répéter que les pipes ne changent rien à la valeur des variables sous-jacentes. Les pipes existent uniquement pour modifier le formatage affiché d'une donnée : on ne peut pas les utiliser ailleurs que dans le template, et il est fortement déconseillé de les utiliser ailleurs que dans une string interpolation.</p>
             <h4>Resumé Pipes 1</h4>
             <p>Un pipe permet de formater l'affichage d'une donnée sans modifier la donnée sous-jacente.
-                Angular fournit trois pipes pour modifier la casse affichée d'une chaîne de caractères : UpperCasePipe, LowerCasePipe, et TitleCasePipe pour les majuscules, les minuscules et le mélange type "titre".</p>
+            Angular fournit trois pipes pour modifier la casse affichée d'une chaîne de caractères : UpperCasePipe, LowerCasePipe, et TitleCasePipe pour les majuscules, les minuscules et le mélange type "titre".</p>
+            <h3>Formatez les dates</h3>
+            <p>Pour configurer un pipe, on ajoute deux-points  :  puis généralement une chaîne de caractères qui définit la configuration.</p>
+            <p>Pour consulter toutes les possibilités de configuration personnalisée, ainsi que la liste complète de formats prédéfinis, consultez <a href="https://angular.io/api/common/DatePipe">la documentation DatePipe</a>.</p>
+            <h4>Changez la locale par défaut</h4>
+            <p>Pour changer la locale de votre application en français, il faudra ajouter quelques lignes dans votre fichier</p>
+            <h3>Resumé 2 Date pipe</h3>
+            <p>DatePipe permet de formater les dates, et sans configuration fournit un formatage par défaut.
+            DatePipe fournit des configurations prédéfinies avec des noms comme  short,  longDate  ou  mediumTime
+            DatePipe permet également de personnaliser totalement le format d'affichage des dates avec des chaînes de caractères qui encodent le format souhaité, par exemple  'à HH:mm, le d MMMM yyyy'</p>
     </div>
 </div>
 
