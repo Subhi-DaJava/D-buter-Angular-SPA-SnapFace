@@ -2,5 +2,6 @@
      c'est donc dans  app.component.html qu'on va venir ajouter le sélecteur de notre nouveau component comme balise HTML <app-face-snap></app-face-snap> -->
      <!-- On voit donc que le sélecteur d'un component crée une balise HTML personnalisée pour l'insertion du component dans l'application. -->
 
-<app-face-snap *ngFor="let faceSnap of faceSnaps" [faceSnap]="faceSnap"></app-face-snap>
+<app-header></app-header>
+<app-face-snap-list></app-face-snap-list>
 <app-my-fb [myFB]="myFirstFB"></app-my-fb>

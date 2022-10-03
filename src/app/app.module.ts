@@ -7,12 +7,16 @@ import { FaceSnapComponent } from './face-snap/face-snap.component';
 import { MyFbComponent } from './my-fb/my-fb.component';
 
 import * as fr from '@angular/common/locales/fr';
+import { FaceSnapListComponent } from './face-snap-list/face-snap-list.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FaceSnapComponent,
-    MyFbComponent
+    MyFbComponent,
+    FaceSnapListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule

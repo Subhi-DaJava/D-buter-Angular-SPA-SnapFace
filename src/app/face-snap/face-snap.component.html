@@ -182,6 +182,61 @@
                 <li>Vous avez manipulé le format d'affichage des nombres avec DecimalPipe, PercentPipe et CurrencyPipe.</li>
             </ul>
     </div>
+    <div class="partie5">
+        <h2>Partie 5</h2>
+        <div class="ch1">
+            <h2>chapitre 1</h2>
+            <h3>components</h3>
+            <p>Dans une application complète Angular, vous aurez des dizaines, voire des centaines de components différents. Ces components auront très souvent besoin d'accéder aux mêmes données. Il y aura des interactions courantes avec ces données, comme l'écriture, la modification et la suppression. L'application peut également avoir besoin d'interagir avec un serveur concernant ces données, pour la lecture et l'enregistrement.</p>
+            <h3>Services</h3>
+            <p>Pour mieux organiser votre code, pour éviter de répéter des blocs et pour toujours avoir des données à jour partout dans l'application, ce serait intéressant de pouvoir regrouper les données et leurs méthodes ensemble, de les centraliser. En Angular, cette centralisation se fait dans des services.</p>
+            <h4>createDate face-snap-list: ng g c face-snap-list</h4>
+            <p>Pour l'instant, AppComponent s'occupe de générer les FaceSnapComponents. Mais ce n'est pas un bon choix, surtout si vous voulez créer une structure plus complexe par la suite. Vous allez créer un nouveau component, FaceSnapListComponent, qui sera le parent de tous vos FaceSnapComponents.</p>
+            <p>Ce nouveau component sera le parent des FaceSnapComponent : il a donc besoin du tableau qui se trouve actuellement dans AppComponent. Il faut aussi lui transplanter le template d'AppComponent.</p>
+            <ul>
+                <li>la logique qui gère la liste des FaceSnaps se trouve maintenant dans un component prévu pour;</li>
+                <li>et AppComponent ne contient que ce qu'il faut pour afficher les éléments principaux de l'application.</li>
+            </ul>
+            <h4>Note</h4>
+            <p>Dans une application Angular, AppComponent ne sert généralement qu'aux éléments structuraux principaux. Tout ce qui est plus "spécialisé" va dans un component à part.</p>
+            <h4>Ajouter un header</h4>
+            <p>Ajoutez tout de suite un nouvel élément principal, HeaderComponent : ng g c header</p>
+            <h4>Ajouter header dans app.component.html</h4>
+            <p>Pour afficher le header au-dessus de la liste de FaceSnap, il suffit de l'ajouter dans le template de AppComponent.</p>
+            <h3>Créer un service pour gérer les FaceSnaps</h3>
+            <p>Tout d'abord, une petite mise en garde sur les services : dans des applications plus complexes (la grande spécialité d'Angular), la gestion des données est un sujet beaucoup plus vaste. Ce que vous ferez dans ce cours sera donc simplifié par rapport à ce que vous rencontrerez par la suite. 
+            Mais ne vous inquiétez pas ! Les techniques plus avancées sont une extension de ce que vous apprendrez dans ce cours.</p>
+            <p>Vous allez maintenant créer un service qui va centraliser toutes les interactions avec les FaceSnaps, afin que tous les éventuels components de votre application dépendent des mêmes données.</p>
+            <h4>Créer ce service manuellement</h4>
+            <p>Dans le dossier  app, créez un dossier  services  et dedans un fichier  face-snaps.service.ts.
+            Un service est une classe, et la façon la plus simple de déclarer une classe comme étant un service est d'utiliser le décorateur  @Injectable()  qui s'importe depuis  @angular/core  :</p>
+            <h4>Note</h4>
+            <p>L'objet de configuration qui spécifie  providedIn: 'root'  dit à Angular d'enregistrer ce service à la racine de l'application. Ce sera très souvent le cas pour vos services, car ça permet de s'assurer de n'avoir qu'une seule instance du service, partagée par tous les partis intéressés.</p>
+            <p>Le premier élément que vous allez déporter dans votre service est le tableau des FaceSnaps. Il est important de savoir qu'un service n'a pas de méthode ngOnInit(), car les services ne sont pas instanciés de la même manière que les components. Il faudra donc déclarer et initialiser le tableau dans la même expression.</p>
+            <h3>Injection du Service</h3>
+            <p>Pour pouvoir utiliser un service dans un component, il faut utiliser <span style="color: blue;">le système d'injection de dépendances (dependency injection ou DI) </span> que vous fournit Angular. C'est très simple : <span style="color: red;">vous passez un argument du type du service au constructor du component</span>, et Angular vous mettra à disposition la bonne instance du service. </p>
+            <h4>Rappel</h4>
+            <p>Pour rappel, ajouter un modificateur d'accès comme  public  ou  private  à un argument du  constructor  crée une propriété avec ce nom-là dans la classe. Vous aurez donc accès au service via la propriété  faceSnapsService.</p>
+            <h4>Note</h4>
+            <p>On préfère généralement  private  pour les injections de service, car ça empêche le template du component d'y accéder directement. Donner au template accès aux injections serait un anti-pattern Angular – autrement dit, une approche plus que déconseillée, souvent pour des raisons qui ne sont pas flagrantes au premier abord.</p>
+            <h4>Intialiser la propriété face-snap</h4>
+            <p>Maintenant que vous avez accès au service, vous pouvez modifier l'initialisation de la propriété  faceSnaps du component pour y attribuer le tableau du service.</p>
+            <h4>Partager les données</h4>
+            <p>Et votre application refonctionne, sauf que maintenant elle utilise les données du service ! Ça veut dire qu'à l'avenir, vous pourriez récupérer ces données depuis un serveur, par exemple. Pour cela, il faut de la logique, des méthodes, donc dans le prochain chapitre, vous verrez comment partager des méthodes dans votre service.</p>
+            <h4>Résumé du CH1</h4>
+            <ul>
+                <li>Les services permettent de centraliser les données et la logique pour les différents domaines de votre application.</li>
+                <li>Créer un service est aussi simple qu'ajouter le décorateur  @Injectable()  à une classe.</li>
+                <li>Pour injecter un service dans un component, ajoutez un argument au constructor du component qui a le type du service, par exemple <span style="color: rgb(119, 0, 255);">userService: UserService</span></li>
+            </ul>
+        </div>
+        <div>
+            <h2>chapitre 2</h2>
+        </div>
+        <div>
+            <h2>chapitre 3</h2>
+        </div>
+    </div>
 </div>
 
 
