@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap.model';
+import { FaceSnapsService } from '../services/face-snaps.service';
 
 //La méthode  ngOnInit()  est appelée automatiquement par Angular au moment de la création de chaque instance du component. Elle permet notamment d'initialiser des propriétés.
 
@@ -12,6 +13,8 @@ export class FaceSnapComponent implements OnInit{
   @Input() faceSnap!: FaceSnap;  // injecter depuis l'extérieur 
   buttonText!: string; 
   
+  constructor(private faceSnapsService: FaceSnapsService) {} //Pour tester cette méthode, il faudra injecter FaceSnapsService dans FaceSnapComponent. Vous vous souvenez comment faire ?
+
   ngOnInit() { // Au moment d'initialisation du component, on initialiser les propriétées
     this.buttonText = 'On Sanp!'
   }
@@ -19,11 +22,11 @@ export class FaceSnapComponent implements OnInit{
   // Ajoutez un bouton avec le texte "Oh Snap!" à côté du nombre de snaps dans votre component :
   onSnap() { //Le nom de méthode qui commence par on signale que cette méthode répond à un événement.
     if(this.buttonText === 'On Sanp!') {
-      this.faceSnap.snaps++;
+      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'snap');
       this.buttonText = 'Opps, unSnap!';
     }
     else {
-      this.faceSnap.snaps--;
+      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
       this.buttonText = 'On Sanp!';
     }
   }

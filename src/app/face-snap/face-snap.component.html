@@ -232,6 +232,43 @@
         </div>
         <div>
             <h2>chapitre 2</h2>
+            <h3>introduction</h3>
+            <p>Dans le chapitre précédent, vous avez créé un service qui contient tous vos FaceSnaps, et que vous utilisez dans FaceSnapListComponent.</p>
+            <p>Cependant, dans une application totalement dynamique, on peut imaginer que ces FaceSnaps viendraient d'un serveur, ou d'une autre partie de l'application, et qu'il faudrait appeler une méthode pour les récupérer. D'ailleurs, toute modification d'un FaceSnap entraînerait également un appel au serveur.</p>
+            <p>Il faudra donc centraliser toutes les interactions avec les FaceSnaps dans FaceSnapsService, et c'est exactement ce que vous allez faire maintenant !</p>
+            <h4>Créer une méthode renvoie la liste de facesnaps</h4>
+            <p>La première méthode que vous allez créer est  getAllFaceSnaps(). Cette méthode retournera, comme son nom l'indique, tous les FaceSnaps contenus dans le service.</p>
+            <p>Même si le comportement n'est pas modifié pour l'instant, cette structure vous permettrait à terme de changer l'implémentation de  getAllFaceSnaps()  sans casser le reste de l'application.Ce genre d'architecture modulaire est l'un des gros points forts d'Angular.</p>
+            <h3>Snap ! Ajouter le nombre dans la base de données</h3>
+            <p>Maintenant pour quelque chose d'un peu plus complexe : le snap ! Pour l'instant, tout se passe à l'intérieur de FaceSnapComponent. Personne à l'extérieur du component ne sait que quelque chose a changé. Une vraie implémentation de cette fonctionnalité ferait certainement un appel au backend pour augmenter le nombre de  snaps  dans la base de données, donc, comme pour toutes les interactions, il faut la faire passer par le service.</p>
+            <h4>Créer méthode pour snap ! Avant tout un id pour le FaceSnap</h4>
+            <p>Pour l'instant, vous n'avez aucun moyen d'identifier un FaceSnap directement. Ajoutez dès maintenant une propriété obligatoire id de type number à votre modèle FaceSnap</p>
+            <p>Et ajoutez un  id  différent à chacun des FaceSnaps dans votre service. Cet identifiant unique va vous permettre de snap un FaceSnap par son identifiant !</p>
+            <p>Implémenteriez une méthode pour snap !</p>
+            <ul>
+                Cette méthode : 
+                <li>cherche un FaceSnap par son id dans le tableau faceSnaps avec la fonction find();</li>
+                <li>si le FaceSnap existe, on lui incrémente ses  snaps;</li>
+                <li>sinon, on  throw  une erreur.</li>
+            </ul>
+            <p>Pour tester cette méthode, il faudra injecter FaceSnapsService dans FaceSnapComponent. Vous vous souvenez comment faire ?</p>
+            <p>Voici ma proposition : on crée une méthode  getFaceSnapById()  qui s'occupe de récupérer le FaceSnap et de  throw  une erreur si on ne le trouve pas. Cela risque d'être une fonctionnalité très utile à plein d'endroits. On a deux options ensuite</p>
+            <ul>
+                <li>créer deux méthodes : une pour snap, une pour unsnap;</li>
+                <li>créer une seule méthode à laquelle on passe un argument qui dit s'il s'agit d'un snap ou d'un unsnap. => les literal types.</li>
+            </ul>
+            <h4>Analyser le code</h4>
+            <p>Cette méthode getFaceSnapById() retourne un FaceSnap si elle le trouve (d'où son type de retour), et  throw  une erreur sinon.</p>
+            <p>Maintenant la partie fun : vous allez modifier l'empreinte de snapFaceSnapById() pour qu'elle accepte un deuxième argument qui permettra de choisir le snapType – un snap, ou un unsnap.</p>
+            <p>Cette méthode utilise  getFaceSnapById() pour récupérer le FaceSnap, et si le deuxième argument est  'snap', rajoute un snap; sinon, elle enlève un snap.</p>
+            <p>Cependant, on pourrait passer n'importe quelle chaîne de caractères à cette méthode. Afin de limiter les possibilités à des options sémantiques, on peut remplacer le type  string  par un literal type.</p>
+            <p>Ainsi, vous ne pourrez passer que 'snap' ou 'unsnap' comme deuxième argument. Non seulement votre IDE vous préviendra si vous essayez de passer autre chose, mais l'autocomplétion et la documentation automatique faciliteront l'utilisation de cette méthode.</p>
+            <h4>Résumé ch2</h4>
+            <ul>
+                <li>Centraliser les interactions dans un service sous forme de méthodes crée une structure plus modulaire, qui facilite la maintenance et les évolutions de votre application.</li>
+                <li>Comme dans toute base de code, refactorisez pour éviter de répéter des blocs de code (le principe DRY : Don't Repeat Yourself).</li>
+                <li>Les literal types permettent de créer rapidement des types personnalisés, souvent utilisés pour limiter les choix pour un argument de méthode, par exemple : fileType: 'image' | 'video'</li>
+            </ul>
         </div>
         <div>
             <h2>chapitre 3</h2>
