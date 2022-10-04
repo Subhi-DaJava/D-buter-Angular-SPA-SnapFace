@@ -452,6 +452,22 @@
                 </ul>
            </div>
         </div>
+        <div>
+            <h2>Partie 4 CH 5</h2>
+            <h4>ActivatedRoute</h4>
+            <p>Il est très souvent utile dans une application dynamique d'avoir accès à la route active. Ce que ça va vous permettre de faire dans ce chapitre, c'est de créer une route avec un paramètre  id  pour visualiser un seul FaceSnap. Le component que vous allez associer à cette route pourra récupérer cet  id  afin de demander à FaceSnapsService de lui envoyer le FaceSnap correspondant.</p>
+            <h4>Util</h4>
+            <p>Une fonctionnalité comme celle-ci permettra à vos utilisateurs de partager des liens directs vers des FaceSnaps spécifiques, par exemple.</p>
+            <h4>Créer un Component en détail</h4>
+            <p>Générez un nouveau component appelé SingleFaceSnapComponent, et transposez-y tout depuis FaceSnapComponent : template, TS et styles.</p>
+            <h4>Note</h4>
+            <p>Il est vrai qu'on laisse tomber ici le principe DRY : l'objectif ici est d'apprendre la différence fondamentale entre un component qui emploie un @Input() et un component qui utilise la route active pour récupérer ses données depuis un service.</p>
+            <p>Vous pouvez dès maintenant créer la route qui appellera ce component. Il faut que l'on puisse y passer un paramètre dynamique, c'est-à-dire le segment de la route qui contiendra l'id  du FaceSnap, et qui sera donc dynamique. Voilà comment faire :</p>
+            <img src="assets/singleFaceSnap.jpg">
+            <p>Les :id  spécifient que ce qui se trouvera après facesnaps/  correspondra à un paramètre qui s'appellera id.</p>
+            <p>Maintenant, si vous essayez de naviguer vers, par exemple, http://localhost:4200/facesnaps/1 (où  1  est un  id  valable), vous aurez :</p>
+            <p>Bien sûr ! On n'a aucun moyen de passer un FaceSnap au  @Input()  de ce component, car c'est le Router qui l'insère !</p>
+        </div>
     </div>
     </div>
     
