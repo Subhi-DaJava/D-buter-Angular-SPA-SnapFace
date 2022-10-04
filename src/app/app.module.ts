@@ -9,6 +9,8 @@ import { MyFbComponent } from './my-fb/my-fb.component';
 import * as fr from '@angular/common/locales/fr';
 import { FaceSnapListComponent } from './face-snap-list/face-snap-list.component';
 import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from 'src/app-routing.module';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { HeaderComponent } from './header/header.component';
     FaceSnapComponent,
     MyFbComponent,
     FaceSnapListComponent,
-    HeaderComponent
+    HeaderComponent,
+    LandingPageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, 
+    AppRoutingModule
   ],
   providers: [
     {

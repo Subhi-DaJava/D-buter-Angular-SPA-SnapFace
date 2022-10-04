@@ -11,7 +11,7 @@ export class FaceSnapListComponent implements OnInit {
 
   faceSnaps!: FaceSnap[]; // déclaration d'un tableau
 
-  constructor(private faceSnapsService: FaceSnapsService) { // injecter le service, une instance du service, faceSnapsService est propriété
+  constructor(private faceSnapsService: FaceSnapsService) { // injecter le service, une instance du service, créer une propriété faceSnapsService
 
    }
 

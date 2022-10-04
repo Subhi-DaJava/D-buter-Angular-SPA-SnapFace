@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { FaceSnap } from "../models/face-snap.model";
-@Injectable ({ // une seule instance de ce service, L'objet de configuration qui spécifie  providedIn: 'root'  dit à Angular d'enregistrer ce service à la racine de l'application. Ce sera très souvent le cas pour vos services, car ça permet de s'assurer de n'avoir qu'une seule instance du service, partagée par tous les partis intéressés.
+@Injectable ({ //Décorateur, une seule instance de ce service, L'objet de configuration qui spécifie  providedIn: 'root'  dit à Angular d'enregistrer ce service à la racine de l'application. Ce sera très souvent le cas pour vos services, car ça permet de s'assurer de n'avoir qu'une seule instance du service, partagée par tous les partis intéressés.
     providedIn: 'root'
 })
 export class FaceSnapsService {
@@ -75,7 +75,7 @@ export class FaceSnapsService {
           return faceSnap;
         }
       }
-      snapFaceSnapById(faceSnapId: number, snapType: 'snap' |'unsnap'): void {
+      snapFaceSnapById(faceSnapId: number, snapType: 'snap' | 'unsnap'): void {
         const faceSnap = this.getFaceSnapById(faceSnapId);
         snapType === 'snap' ? faceSnap.snaps++ : faceSnap.snaps--;
       }
