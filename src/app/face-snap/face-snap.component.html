@@ -326,9 +326,30 @@
                     </li>
                     <li>L'associer à la route vide dans votre routing (indice : le path d'une route vide est le string vide).</li>
                 </ul>
-        </div>
-        <div>
-            <h2>Chapitre 4 : </h2>
+                <h3>LandingPageComponent</h3>
+                <p>utiliser le CLI : ng g c landing-page</p>
+            <h2>Conclusion</h2>
+            <p>Pour l'enregistrer comme étant le component à afficher pour la route vide, il faut ajouter une route à votre tableau  routes  dans AppRoutingModule :</p>
+            <p>const routes: Routes = [
+                 entre accolades path: 'facesnaps', component: FaceSnapListComponent ,
+                 entre accolades path: '', component: LandingPageComponent 
+              ];</p>
+            <h4>Note</h4>
+            <p>Pour utiliser des fichiers statiques comme l'image ci-dessus, mettez-les dans le dossier  assets  du projet ! Vous pouvez bien sûr y créer toute une arborescence : images, fonts, PDF…</p>
+            <p>Vous avez maintenant deux routes fonctionnelles ! Dans le prochain chapitre, vous mettrez en place deux systèmes pour permettre aux utilisateurs de passer d'une route à l'autre.</p>
+            <h3>Résumé CH3</h3>
+            <ul>
+                <li>Un module de routing contient un tableau de type Routes qui contient les routes de l'application.</li>
+                <li>Une route est un objet de type entre accolades path: 'myPath', component: MyComponent   qui spécifie le component à afficher pour chaque route.</li>
+                <li>On appelle RouterModule.forRoot() en passant le tableau de routes pour enregistrer les routes dans le routeur Angular.</li>
+                <li>On enregistre le module de routing dans AppModule pour ajouter le routeur configuré à l'application.</li>
+                <li>On ajoute une balise entre chevilles router-outlet pour dire à quel niveau du template le component de la route active doit être inséré.</li>
+                <li>Pour ajouter des fichiers statiques à une application (comme des images), on les stocke dans le dossier assets.</li>
+            </ul>
+            <h3>Chapitre 4 partie 5</h3>
+            <h5>Saute d'une page à l'autre: créer un lien</h5>
+            <p>Dans le chapitre précédent, vous avez ajouté un module de routing, et vous y avez enregistré deux routes fonctionnelles. Tout ce qui reste à faire, c'est de permettre à vos utilisateurs de changer de route !</p>
+
         </div>
     </div>
 </div>

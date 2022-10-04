@@ -11,6 +11,7 @@ import { FaceSnapListComponent } from './face-snap-list/face-snap-list.component
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from 'src/app-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { MyBfShowComponent } from './my-bf-show/my-bf-show.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MyFbComponent,
     FaceSnapListComponent,
     HeaderComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    MyBfShowComponent
   ],
   imports: [
     BrowserModule, 
