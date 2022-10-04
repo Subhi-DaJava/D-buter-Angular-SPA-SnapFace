@@ -24,9 +24,11 @@
         <p>{{ 102.56 | currency: 'EUR' : 'code' }}</p> <!-- 102.56 | currency => 102,56 $US par défault et currency: 'EUR' : 'code'  => 102,56 EUR-->
 
     </div>
-    <p>Ça y est ! La fonctionnalité est terminée : vous avez réussi à réagir à un événement venant du template, et à exécuter un comportement conditionnel, tout en vous servant de la string interpolation pour afficher le résultat et pour rendre dynamique le texte du bouton !</p>
-    <p>Si l'utilisateur a déjà "snapped" une image, le texte du bouton doit être "Oops, un Snap!", et cliquer dessus doit "retirer" le snap (réduire les snaps de 1), auquel moment le bouton réaffiche "Oh Snap!", et retrouve son comportement d'origine.</p>
-    <h4>Déclaration des propriétés</h4>
+    <div>
+        <p>Ça y est ! La fonctionnalité est terminée : vous avez réussi à réagir à un événement venant du template, et à exécuter un comportement conditionnel, tout en vous servant de la string interpolation pour afficher le résultat et pour rendre dynamique le texte du bouton !</p>
+        <p>Si l'utilisateur a déjà "snapped" une image, le texte du bouton doit être "Oops, un Snap!", et cliquer dessus doit "retirer" le snap (réduire les snaps de 1), auquel moment le bouton réaffiche "Oh Snap!", et retrouve son comportement d'origine.</p>
+        <h4>Déclaration des propriétés</h4>
+    </div>
     <div class="resume-card">
         On déclare les propriétés d'un component en haut de sa classe, et on les initialise dans la méthode  ngOnInit()
         La méthode  ngOnInit()  est appelée une fois par instance de component au moment de la création de cette instance.
@@ -61,7 +63,6 @@
        </div>
       
     </div>
-    <br><br>
     <h2>Directive</h2>
     <div class="directiv-card">
         <h4>NgIf</h4>
@@ -69,7 +70,6 @@
             Une directive est une classe qui vient ajouter du comportement à l'élément sur lequel elle est posée. L'astérisque au début du nom  *ngIf nous montre qu'il s'agit d'une directive structurelle, qui viendra donc toucher à la structure du document.
             *ngIf  permet donc de structurer vos components selon les conditions que vous choisissez. 
         </div>
-        <br>
         <h4>propriété optionnelle</h4>
         <div class="attribut-optionel">
             Le TypeScript nous permet d'ajouter des propriétés optionnelles aux classes, aux objets, et même des arguments optionnels aux méthodes. Je vous propose d'ajouter dès maintenant une propriété optionnelle à la classe FaceSnap, qui sera la localisation de l'image. On pourrait imaginer que les utilisateurs puissent choisir d'ajouter ou non cette localisation. Pour ajouter cette propriété optionnelle, il suffit d'utiliser un point d'interrogation.
@@ -273,86 +273,152 @@
             <p>Créer des types "limités" comme ça, sous forme de literal types, ce n'est pas limité aux chaînes de caractères ! Pour plus d'informations sur les literal types, n'hésitez pas à plonger <a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#literal-types">dans la documentation TypeScript</a>.</p>
         </div>
         <div>
-            <h2>Chapitre 3 : Passez en SPA avec le routing</h2>
-            <h4>SPA</h4>
-            <p>Les Single Page Applications (ou SPA) sont de plus en plus courantes dans le monde du développement web moderne. Elles permettent une performance sans égale en enlevant le besoin d'une application de demander, recevoir, puis afficher une nouvelle page HTML à chaque changement d'URL. Angular vous permet avec le routing de créer ce genre d'application – à chaque URL correspondra un component, et Angular remplacera le component actif sans émettre de requête au serveur.</p>
-            <p>Dans l'application Snapface, vous allez créer une landing page afin de découvrir le fonctionnement du routing ; puis, dans les prochains chapitres, vous ajouterez une autre route et d'autres fonctionnalités de routing pour créer une application plus complète !</p>
-            <h4>un module de routing</h4>
-            <p>D'abord, vous allez ajouter un module de routing à votre application. Dans le dossier  app, créez un fichier  app-routing.module.ts. Commencez par y déclarer une classe avec le décorateur @NgModule() :</p>
-            <p>Au-dessus de la déclaration de classe, vous allez initialiser une constante appelée  routes, de type  Routes  (importé depuis  @angular/router) et qui contiendra un tableau.</p>
-            <h4>Créer une route facesnaps</h4>
-            <p>Ce tableau va lier les routes de votre application (les différentes URL) aux components correspondants. Créez dès maintenant une première route  facesnaps qui affichera le component FaceSnapListComponent.</p>
-            <p>const routes: Routes = [
-                entre accolades path: 'facesnaps', component: FaceSnapListComponent 
-              ];</p>
-            <p>Pour enregistrer ces routes dans votre application, il faut les passer au routeur en passant un objet de configuration au décorateur @NgModule()  de AppRoutingModule :</p>
-            <p>@NgModule( entre accolades: 
-                imports: [
-                  RouterModule.forRoot(routes)
-                ],
-                exports: [
-                  RouterModule
-                ]
-              )</p>
-              <p>RouterModule est aussi importé depuis @angular/router.</p>
-              <h4>Ajouter cette route dans appModule</h4>
-              <p>Ici, vous dites à Angular que les routes de ce fichier seront les routes à la racine de votre application, et vous réexportez le routeur configuré. Pour l'utiliser, il faut ajouter votre module de routing aux imports de AppModule, le module principal de votre application :</p>
-              <p>@NgModule(entre accolades
-                // ...
-                imports: [
-                  BrowserModule,
-                  AppRoutingModule
-                ],
-                // ...
-              )
-              export class AppModule </p>
-              <h4>Afficher la route</h4>
-              <p>Il ne reste plus qu'à dire à Angular où il faut afficher le component dicté par la route. Dans le template d'AppComponent, remplacez la balise entres les chevilles app-face-snap-list par une balise  router-outlet </p>
-              <p>Comme ça, ce sera le routeur qui décidera quel component doit être affiché, et AppComponent qui décidera à quel niveau ce component sera ajouté. Dans ce cas, on a décidé que le AppHeader restera présent peu importe la route active, ce qui est plutôt réaliste : on pourrait même envisager d'y placer un menu de navigation pour l'application.</p>
-              <h4>Affiche le componenet</h4>
-              <p>À votre avis, pourquoi rien ne s'affiche ?
-                Eh bien, c'est parce que vous n'avez pas spécifié de component pour la route "vide" ! Cependant, si vous allez à http://localhost:4200/facesnaps, vous retrouverez l'affichage précédent.</p>
-                <h4>Landing Page</h4>
-                <p>Si vous changez de route via la barre d'adresse de votre navigateur, une nouvelle requête est envoyée au serveur de développement, et l'application est totalement rechargée.
-                <span style="color: blue;">Le but maintenant sera de créer une landing page</span> pour la route "vide", qui permette d'accéder à la route facesnaps.</p>
-                <h4>Créer Landing Page</h4>
-                <ul>
-                    Je vais commencer par vous présenter l'objectif de cette partie du chapitre, pour que vous puissiez essayer de tout faire vous-même.
-                    <li>
-                        <ul>
-                            Créer un component nommé LandingPageComponent :
-                            <li>ce component peut être aussi simple ou complexe que vous le souhaitez ! </li>
-                        </ul>
-                    </li>
-                    <li>L'associer à la route vide dans votre routing (indice : le path d'une route vide est le string vide).</li>
-                </ul>
-                <h3>LandingPageComponent</h3>
-                <p>utiliser le CLI : ng g c landing-page</p>
-            <h2>Conclusion</h2>
-            <p>Pour l'enregistrer comme étant le component à afficher pour la route vide, il faut ajouter une route à votre tableau  routes  dans AppRoutingModule :</p>
-            <p>const routes: Routes = [
-                 entre accolades path: 'facesnaps', component: FaceSnapListComponent ,
-                 entre accolades path: '', component: LandingPageComponent 
-              ];</p>
-            <h4>Note</h4>
-            <p>Pour utiliser des fichiers statiques comme l'image ci-dessus, mettez-les dans le dossier  assets  du projet ! Vous pouvez bien sûr y créer toute une arborescence : images, fonts, PDF…</p>
-            <p>Vous avez maintenant deux routes fonctionnelles ! Dans le prochain chapitre, vous mettrez en place deux systèmes pour permettre aux utilisateurs de passer d'une route à l'autre.</p>
-            <h3>Résumé CH3</h3>
-            <ul>
-                <li>Un module de routing contient un tableau de type Routes qui contient les routes de l'application.</li>
-                <li>Une route est un objet de type entre accolades path: 'myPath', component: MyComponent   qui spécifie le component à afficher pour chaque route.</li>
-                <li>On appelle RouterModule.forRoot() en passant le tableau de routes pour enregistrer les routes dans le routeur Angular.</li>
-                <li>On enregistre le module de routing dans AppModule pour ajouter le routeur configuré à l'application.</li>
-                <li>On ajoute une balise entre chevilles router-outlet pour dire à quel niveau du template le component de la route active doit être inséré.</li>
-                <li>Pour ajouter des fichiers statiques à une application (comme des images), on les stocke dans le dossier assets.</li>
-            </ul>
-            <h3>Chapitre 4 partie 5</h3>
-            <h5>Saute d'une page à l'autre: créer un lien</h5>
-            <p>Dans le chapitre précédent, vous avez ajouté un module de routing, et vous y avez enregistré deux routes fonctionnelles. Tout ce qui reste à faire, c'est de permettre à vos utilisateurs de changer de route !</p>
-
+            <div>
+                <div>
+                <h2>Chapitre 3 : Passez en SPA avec le routing</h2>
+                <h4>SPA</h4>
+                <p>Les Single Page Applications (ou SPA) sont de plus en plus courantes dans le monde du développement web moderne. Elles permettent une performance sans égale en enlevant le besoin d'une application de demander, recevoir, puis afficher une nouvelle page HTML à chaque changement d'URL. Angular vous permet avec le routing de créer ce genre d'application – à chaque URL correspondra un component, et Angular remplacera le component actif sans émettre de requête au serveur.</p>
+                <p>Dans l'application Snapface, vous allez créer une landing page afin de découvrir le fonctionnement du routing ; puis, dans les prochains chapitres, vous ajouterez une autre route et d'autres fonctionnalités de routing pour créer une application plus complète !</p>
+                <h4>un module de routing</h4>
+                <p>D'abord, vous allez ajouter un module de routing à votre application. Dans le dossier  app, créez un fichier  app-routing.module.ts. Commencez par y déclarer une classe avec le décorateur @NgModule() :</p>
+                <p>Au-dessus de la déclaration de classe, vous allez initialiser une constante appelée  routes, de type  Routes  (importé depuis  @angular/router) et qui contiendra un tableau.</p>
+                <h4>Créer une route facesnaps</h4>
+                <p>Ce tableau va lier les routes de votre application (les différentes URL) aux components correspondants. Créez dès maintenant une première route  facesnaps qui affichera le component FaceSnapListComponent.</p>
+                <p>const routes: Routes = [
+                    entre accolades path: 'facesnaps', component: FaceSnapListComponent 
+                  ];</p>
+                <p>Pour enregistrer ces routes dans votre application, il faut les passer au routeur en passant un objet de configuration au décorateur @NgModule()  de AppRoutingModule :</p>
+                </div>
+                <div>
+                    <p>@NgModule( entre accolades: 
+                        imports: [
+                          RouterModule.forRoot(routes)
+                        ],
+                        exports: [
+                          RouterModule
+                        ]
+                      )</p>
+                      <p>RouterModule est aussi importé depuis @angular/router.</p>
+                      <h4>Ajouter cette route dans appModule</h4>
+                      <p>Ici, vous dites à Angular que les routes de ce fichier seront les routes à la racine de votre application, et vous réexportez le routeur configuré. Pour l'utiliser, il faut ajouter votre module de routing aux imports de AppModule, le module principal de votre application :</p>
+                
+                      <p> @NgModule(entre accolades
+                        // ...
+                        imports: [
+                          BrowserModule,
+                          AppRoutingModule
+                        ],
+                        // ...
+                      )
+                      export class AppModule </p>
+                      <h4>Afficher la route</h4>
+                      <p>Il ne reste plus qu'à dire à Angular où il faut afficher le component dicté par la route. Dans le template d'AppComponent, remplacez la balise entres les chevilles app-face-snap-list par une balise  router-outlet </p>
+                      <p>Comme ça, ce sera le routeur qui décidera quel component doit être affiché, et AppComponent qui décidera à quel niveau ce component sera ajouté. Dans ce cas, on a décidé que le AppHeader restera présent peu importe la route active, ce qui est plutôt réaliste : on pourrait même envisager d'y placer un menu de navigation pour l'application.</p>
+                      <h4>Affiche le componenet</h4>
+                      <p>À votre avis, pourquoi rien ne s'affiche ?
+                        Eh bien, c'est parce que vous n'avez pas spécifié de component pour la route "vide" ! Cependant, si vous allez à http://localhost:4200/facesnaps, vous retrouverez l'affichage précédent.</p>
+                        <h4>Landing Page</h4>
+                        <p>Si vous changez de route via la barre d'adresse de votre navigateur, une nouvelle requête est envoyée au serveur de développement, et l'application est totalement rechargée.
+                        <span style="color: blue;">Le but maintenant sera de créer une landing page</span> pour la route "vide", qui permette d'accéder à la route facesnaps.</p>
+                </div>
+                <div>
+                    <h4>Créer Landing Page</h4>
+                    <ul>
+                        Je vais commencer par vous présenter l'objectif de cette partie du chapitre, pour que vous puissiez essayer de tout faire vous-même.
+                        <li>
+                            <ul>
+                                Créer un component nommé LandingPageComponent :
+                                <li>ce component peut être aussi simple ou complexe que vous le souhaitez ! </li>
+                            </ul>
+                        </li>
+                        <li>L'associer à la route vide dans votre routing (indice : le path d'une route vide est le string vide).</li>
+                    </ul>
+                    <h3>LandingPageComponent</h3>
+                    <p>utiliser le CLI : ng g c landing-page</p>
+                <h2>Conclusion</h2>
+                <p>Pour l'enregistrer comme étant le component à afficher pour la route vide, il faut ajouter une route à votre tableau  routes  dans AppRoutingModule :</p>
+                <p>const routes: Routes = [
+                     entre accolades path: 'facesnaps', component: FaceSnapListComponent ,
+                     entre accolades path: '', component: LandingPageComponent 
+                  ];</p>
+                <h4>Note</h4>
+                <p>Pour utiliser des fichiers statiques comme l'image ci-dessus, mettez-les dans le dossier  assets  du projet ! Vous pouvez bien sûr y créer toute une arborescence : images, fonts, PDF…</p>
+                <p>Vous avez maintenant deux routes fonctionnelles ! Dans le prochain chapitre, vous mettrez en place deux systèmes pour permettre aux utilisateurs de passer d'une route à l'autre.</p>
+                <h3>Résumé CH3</h3>
+                </div>
+                <div>
+                    <ul>
+                        <li>Un module de routing contient un tableau de type Routes qui contient les routes de l'application.</li>
+                        <li>Une route est un objet de type entre accolades path: 'myPath', component: MyComponent   qui spécifie le component à afficher pour chaque route.</li>
+                        <li>On appelle RouterModule.forRoot() en passant le tableau de routes pour enregistrer les routes dans le routeur Angular.</li>
+                        <li>On enregistre le module de routing dans AppModule pour ajouter le routeur configuré à l'application.</li>
+                        <li>On ajoute une balise entre chevilles router-outlet pour dire à quel niveau du template le component de la route active doit être inséré.</li>
+                        <li>Pour ajouter des fichiers statiques à une application (comme des images), on les stocke dans le dossier assets.</li>
+                    </ul>
+                </div> 
+                <div>
+                    <h3>Chapitre 4 partie 5</h3>
+                    <h4>Première approche: routerLink</h4>
+                    <h5>Saute d'une page à l'autre: créer un lien</h5>
+                    <p>Dans le chapitre précédent, vous avez ajouté un module de routing, et vous y avez enregistré deux routes fonctionnelles. Tout ce qui reste à faire, c'est de permettre à vos utilisateurs de changer de route !</p>
+                    <h4>Créez des liens avec routerLink</h4>
+                    <p>Le routeur d'Angular vous met à disposition une directive pour créer ultra facilement des liens vers des routes de vos applications, et cette directive s'appelle  routerLink. Elle est très facile à utiliser : on lui passe simplement la chaîne de caractères qui correspond à la route vers laquelle on veut créer le lien.</p>
+                </div>
+                <div>
+                    <h4>Note</h4>
+                    <p>Dans ce cas, on n'a même pas besoin de crochets ! Les crochets sont nécessaires à partir du moment où vous passez autre chose qu'une chaîne de caractères : un nombre, un objet, ou le nom d'une variable ou propriété, par exemple.</p>
+                    <a routerLink="">Continuer vers acceuil</a>
+                    <p>Maintenant, quand vous cliquez sur le lien de votre landing page, vous êtes redirigé immédiatement vers acceuil sans chargement depuis le serveur !</p>
+                    <h4>Menu de navigation</h4>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h1>snapface</h1>
+                    <nav>
+                      <a routerLink="">Home</a>
+                      &
+                      <a routerLink="facesnaps">FaceSnaps</a>
+                    </nav>
+                </div>
+            </div>
+            <div>
+                <p>Avec ces deux liens, vous avez un menu de navigation dans votre header, et vous pouvez bien vous rendre compte de la vitesse de changement de route !</p>
+            <p>
+                <img src="assets/menu_navigation.jpg" style="width: 50%;">
+            </p>
+            <h4>Style-Active</h4>
+            <p>Vous avez peut-être remarqué que je vous ai fourni une classe  active  dans les styles. Il y a une extension de la directive  routerLink qui permet d'attribuer une classe CSS au lien quand sa route est la route active : Vous passez simplement le classe à attribuer à  routerLinkActive.</p>
+            </div>
+               <div>
+                <header>
+                    <h1>snapface</h1>
+                    <nav>
+                      <a routerLink="" routerLinkActive="active">Home</a>
+                      &
+                      <a routerLink="facesnaps" routerLinkActive="active">FaceSnaps</a>
+                    </nav>
+                  </header>
+            </div>
+            <div>
+            <h4>Bug</h4>
+            <p>Problème, on a un bug un peu étrange. Lorsque Home est la route active, il n'y a que son lien qui est souligné, mais lorsqu'on est sur FaceSnaps, les deux liens sont soulignés. Avez-vous une idée d'où ça peut venir ?</p>
+            <h4>Solution</h4>
+            <p>En fait, une route est considérée comme étant active lorsqu'elle-même ou l'un de ses enfants est la route sélectionnée. On voit bien que  /facesnaps  est un enfant de  /, donc finalement Angular se comporte normalement. Cependant, il existe une configuration qui permet de considérer uniquement la route exacte et non ses enfants. Il suffit d'ajouter :</p>
+            <!-- <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]=" exact: true ">Home</a> -->
+            <p>
+                <img src="assets/routerLinkActiveOptions.png">
+            </p>
+           </div>
+           <div>
+            <h3>Deuxième approche: Router</h3>
+            <h4>Naviguez avec le Router</h4>
+            <p></p>
+           </div>
         </div>
     </div>
-</div>
+    </div>
+    
 
 
 
