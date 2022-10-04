@@ -10,19 +10,21 @@
         <!-- <div class="face-snap-card" [ngClass]="{ snapped: faceSnap.snaps > 400 }"> -->
         <h2>{{ faceSnap.title | uppercase }}</h2>
         <h3>{{ faceSnap.description | titlecase }}</h3>
-        <p>Là, Angular associe les valeurs des propriétés TypeScript aux attributs de l'élément HTML</p>
-        <p *ngIf="faceSnap.location" style="color: red;">Photo prise à {{ faceSnap.location | uppercase }}</p>
+        <!-- <p>Là, Angular associe les valeurs des propriétés TypeScript aux attributs de l'élément HTML</p>
+        <p *ngIf="faceSnap.location" style="color: red;">Photo prise à {{ faceSnap.location | uppercase }}</p> -->
         <!-- <p *ngIf="faceSnap.location === 'Paris'" style="color: red;">Photo prise à {{ faceSnap.location }}</p> -->
-        <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"> 
+        <!-- <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"> 
         <p>Mis en ligne: {{ faceSnap.createDate | date: 'à HH:mm:ss, le d/MMMM/yyyy' }}</p>
-        <h4>Snap ou non Snap!</h4>
-        <p><button (click)="onSnap()"> {{ buttonText }}</button> <!--On utilise bien  (click)  et non  (onclick)  car on veut réagir à l'événement qui s'appelle "click" !-->
+        <h4>Snap ou non Snap!</h4> -->
+         <!--On utilise bien  (click)  et non  (onclick)  car on veut réagir à l'événement qui s'appelle "click" !-->
+        <!-- <p><button (click)="onSnap()"> {{ buttonText }}</button>
             <span [ngStyle]="{color: 'rgb(0, ' + faceSnap.snaps/2 + ', 0)'}">Emoji 🤞: {{ faceSnap.snaps }}</span> </p>
         <h4>Pipes Numbers</h4>
         <p>{{ 4346234.365 | number: '1.0-2' }}</p>
         <p>{{ 0.3665 | percent: '1.0-2' }}</p>
-        <p>{{ 102.56 | currency: 'EUR' : 'code' }}</p> <!-- 102.56 | currency => 102,56 $US par défault et currency: 'EUR' : 'code'  => 102,56 EUR-->
-
+        <p>{{ 102.56 | currency: 'EUR' : 'code' }}</p>  -->
+        <!-- 102.56 | currency => 102,56 $US par défault et currency: 'EUR' : 'code'  => 102,56 EUR-->
+        <button (click)="onViewFaceSnap()">VIEW</button>
     </div>
     <div>
         <p>Ça y est ! La fonctionnalité est terminée : vous avez réussi à réagir à un événement venant du template, et à exécuter un comportement conditionnel, tout en vous servant de la string interpolation pour afficher le résultat et pour rendre dynamique le texte du bouton !</p>
@@ -467,6 +469,38 @@
             <p>Les :id  spécifient que ce qui se trouvera après facesnaps/  correspondra à un paramètre qui s'appellera id.</p>
             <p>Maintenant, si vous essayez de naviguer vers, par exemple, http://localhost:4200/facesnaps/1 (où  1  est un  id  valable), vous aurez :</p>
             <p>Bien sûr ! On n'a aucun moyen de passer un FaceSnap au  @Input()  de ce component, car c'est le Router qui l'insère !</p>
+            <h4>Récupérez les paramètres de route</h4>
+            <p>fin de récupérer les informations de la route activée, vous allez injecterActivatedRoutedans SingleFaceSnapComponent, sans oublier d'enlever le décorateur @Input() de la propriété  faceSnap : ActivatedRoute s'importe depuis  @angular/router.</p>
+            <img src="assets/injectAR.jpg">
+            <p>Ensuite, dans ngOnInit(), vous allez pouvoir récupérer le paramètre id via le snapshot de la route (un snapshot est un aperçu instantané d'une valeur qui change au cours du temps) :</p>
+            <img src="assets/snapshotID.jpg">
+            <h4>Cast</h4>
+            <p>Tous les paramètres d'une route sont de type string, mais l'id  des FaceSnaps est de type number. Ajouter le + au début de l'expression permet de cast (changer le type d'une variable) une string de nombres en number.</p>
+            <p>Avec cet  id, vous pouvez appeler la méthode  getFaceSnapById()  du service pour récupérer le FaceSnap correspondant :</p>
+            <img src="assets/getFaceSnap.jpg">
+            <h4>Challenge</h4>
+            <p>Pour compléter l'application, et permettre à vos utilisateurs d'accéder à cette nouvelle route, je vous propose de modifier FaceSnapComponent pour n'afficher que le titre et la description des FaceSnaps, et d'y ajouter un bouton qui permet d'ouvrir le FaceSnap dans la nouvelle route.</p>
+            <h4>Solution</h4>
+            <p>Voilà ma solution. Il faut bien sûr injecter le Router, et utiliser sa méthode  navigateByUrl() :</p>
+            <img src="assets/routerFaceSnapId.jpg">
+            <h4>utile</h4>
+            <p>J'ai utilisé la syntaxe template literal (avec les backticks `) pour rendre plus lisible la chaîne de caractères passée à la méthode. Pour plus d'informations sur cette syntaxe ultra utile, voici les docs MDN sur les <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Template_literals">template literals.</a></p>
+            <p>Et les boutons VIEW vous amènent vers les routes SingleFaceSnapComponent. Du coup, tout ce qui reste, c'est de mettre un lien ou un bouton Back dans SingleFaceSnapComponent pour permettre un retour en arrière facile, mais attention au piège !</p>
+            <img src="assets/sousRoute.jpg">
+            <p>Ici, si vous n'ajoutez pas le / au début de la route, le Router essaiera d'accéder à une sous-route, et vous finirez avec une URL de type localhost:4200/facesnaps/3/facesnaps, donc pas du tout ce qu'on veut !</p>
+            <h4>Félicitations</h4>
+            <p>Avec ces dernières fonctionnalités, votre première application Angular est terminée !</p>
+            <h3>Résumé Partie 5 CH 5</h3>
+            <ul>
+                <li>On récupère les paramètres de la route activée en injectant ActivatedRoute, et via son objet  snapshot.params.</li>
+                <li>Pour naviguer vers une route absolue (et non relative), n'oubliez pas d'ajouter un / au début de la route demandée.</li>
+            </ul>
+            <h4>Résumé de Partie 5</h4>
+            <ul>
+                <li>Vous avez centralisé données et logique dans un service que vous avez ensuite injecté dans les components concernés.</li>
+                <li>Vous avez ajouté un module de routing à votre application, et trois routes fonctionnelles.</li>
+                <li>Vous avez mis en place deux systèmes pour que vos utilisateurs puissent changer de route : les routerLinks et le Router.</li>
+            </ul>
         </div>
     </div>
     </div>

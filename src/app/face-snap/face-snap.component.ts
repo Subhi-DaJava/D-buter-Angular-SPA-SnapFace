@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { FaceSnap } from '../models/face-snap.model';
 import { FaceSnapsService } from '../services/face-snaps.service';
 
@@ -13,7 +14,9 @@ export class FaceSnapComponent implements OnInit{
   @Input() faceSnap!: FaceSnap;  // injecter depuis l'extérieur 
   buttonText!: string; 
   
-  constructor(private faceSnapsService: FaceSnapsService) {} //Pour tester cette méthode, il faudra injecter FaceSnapsService dans FaceSnapComponent. Vous vous souvenez comment faire ?
+  constructor(
+    private faceSnapsService: FaceSnapsService, 
+    private router: Router) {} //Pour tester cette méthode, il faudra injecter FaceSnapsService dans FaceSnapComponent. Vous vous souvenez comment faire ?
 
   ngOnInit() { // Au moment d'initialisation du component, on initialiser les propriétées
     this.buttonText = 'On Sanp!'
@@ -29,5 +32,8 @@ export class FaceSnapComponent implements OnInit{
       this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
       this.buttonText = 'On Sanp!';
     }
+  }
+  onViewFaceSnap() {
+    this.router.navigateByUrl(`facesnaps/${this.faceSnap.id}`);
   }
 }
