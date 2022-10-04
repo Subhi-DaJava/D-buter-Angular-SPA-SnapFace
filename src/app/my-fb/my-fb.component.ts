@@ -11,19 +11,23 @@ export class MyFbComponent implements OnInit {
 @Input() myFb!: MyFB;
 button!: string;
 liked!: boolean;
-constructor(private myBFService: MyFBService) {}
+constructor() {}
 
 ngOnInit(): void {
-   this.button = 'go';
+   this.button = 'Viste to my GitHub';
    this.liked = false;
 }
-  // onLike(){
-  //   if(!this.liked) {
-  //     this.myFB.like++;
-  //     this.liked = true;
-  //   } else {
-  //     this.myFB.like--;
-  //     this.liked = false; 
-  //   }
-  // }
+  onLike() {
+    if(!this.liked) {
+      this.myFb.like++;
+      this.liked = true;
+    } else {
+      this.myFb.like--;
+      this.liked = false; 
+    }
+  }
+  onViste() : void {
+    this.button = 'https://github.com/Subhi-DaJava?tab=repositories';
+    //this.button = 'Viste to my GitHub';
+  }
 }

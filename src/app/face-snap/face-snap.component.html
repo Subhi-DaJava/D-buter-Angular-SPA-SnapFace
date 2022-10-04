@@ -395,7 +395,7 @@
                     <h1>snapface</h1>
                     <nav>
                       <a routerLink="" routerLinkActive="active">Home</a>
-                      &
+                     &
                       <a routerLink="facesnaps" routerLinkActive="active">FaceSnaps</a>
                     </nav>
                   </header>
@@ -405,7 +405,7 @@
             <p>Problème, on a un bug un peu étrange. Lorsque Home est la route active, il n'y a que son lien qui est souligné, mais lorsqu'on est sur FaceSnaps, les deux liens sont soulignés. Avez-vous une idée d'où ça peut venir ?</p>
             <h4>Solution</h4>
             <p>En fait, une route est considérée comme étant active lorsqu'elle-même ou l'un de ses enfants est la route sélectionnée. On voit bien que  /facesnaps  est un enfant de  /, donc finalement Angular se comporte normalement. Cependant, il existe une configuration qui permet de considérer uniquement la route exacte et non ses enfants. Il suffit d'ajouter :</p>
-            <!-- <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]=" exact: true ">Home</a> -->
+            <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]=" {exact: true} ">Home</a>
             <p>
                 <img src="assets/routerLinkActiveOptions.png">
             </p>
@@ -413,7 +413,43 @@
            <div>
             <h3>Deuxième approche: Router</h3>
             <h4>Naviguez avec le Router</h4>
-            <p></p>
+            <p>Il existe une autre approche pour changer de route dans une application Angular. Vous pouvez injecter le Router dans vos components et changer de route programmatiquement.</p>
+            <h5>programmatiquement</h5>
+            <p>Programmatiquement signifie, en gros, "dans le code TypeScript". Ça veut dire que vous pouvez déclencher les changements de route depuis des méthodes dans vos components. Dans ce cas précis, vous allez lier une méthode au clic sur un bouton.</p>
+            <h5>Étapes</h5>
+            <ul>
+                <li>transformer le lien sur la landing page en bouton ;</li>
+                <li>reprendre les styles de bouton de FaceSnapComponent en augmentant la taille de police à 20 px ;</li>
+                <li>lier une méthode avec un nom approprié à ce bouton ;
+                </li>
+                <li>BONUS : injecter le Router dans LandingPageComponent – il s'importe depuis  @angular/router  et s'injecte comme un service.</li>
+            </ul>
+            <h5>Solution</h5>
+            <p>On peut commencer par la méthode qui sera liée au bouton. J'ai choisi de l'appeler  onContinue()  ; à partir du moment où le nom de votre méthode commence par on et décrit l'action.</p>
+            <p>Après avoir créé la méthode vide dans LandingPageComponent, je transforme le lien en bouton et j'y lie la nouvelle méthode :</p>
+            <p>
+                <img style="width: 80%;" src="assets/clickRouter.jpg" alt="">
+            </p>
+            <h5>Button global</h5>
+            <p>Vous pouvez aussi décider que tous vos boutons ressembleront à celui-ci (ou ceux d'une certaine classe), et mettre ce style dans le fichier global styles.scss, ce qui vous permet de modifier uniquement la taille de police dans les différents components !</p>
+            <p>Ensuite, pour injecter le Router, c'est aussi simple qu'avec un service </p>
+            <p>import  Router from '@angular/router';
+                //...
+                constructor(private router: Router) accolades</p>
+                <p>
+                    Maintenant il ne reste plus qu'à appeler la méthode  navigateByUrl() du Router depuis la méthode  onContinue() :
+                </p>
+                <p>onContinue() 
+                    this.router.navigateByUrl('facesnaps');
+                </p>
+                <p>Et ça y est, le bouton de la landing page vous redirige vers la route FaceSnaps !</p>
+                <h3>Résumé Partie 5 CH4</h3>
+                <ul>
+                    <li>Créez des liens qui permettent de passer d'une route à l'autre avec la directive routerLink.</li>
+                    <li>Ajoutez des classes CSS aux liens correspondants à la route activée avec routerLinkActive.</li>
+                    <li>Ignorez l'activation des routes enfants avec  [routerLinkActiveOptions]=" exact: true ".</li>
+                    <li>Injectez le Router dans vos components et utilisez sa méthode navigateByUrl() pour de la navigation programmatique.</li>
+                </ul>
            </div>
         </div>
     </div>
